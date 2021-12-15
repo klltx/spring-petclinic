@@ -13,19 +13,23 @@ pipeline {
 	    }
         stage('Archive'){
             steps{
+                dir('C:\\'){
                     zip zipFile: "artifacts\\${BUILD_NUMBER}.zip", archive:false, dir: 'target'
                     archiveArtifacts artifacts: "artifacts\\${BUILD_NUMBER}.zip"
+                }
             }
         }
         stage('Deploy'){
             steps{
-                script{
-                    try
-                    {
-                        bat("md C:\\deploy\\")
-                    }catch(Exception e){}
+                dir('C:\\'){
+                    script{
+                        try
+                        {
+                            bat("md deploy")
+                        }catch(Exception e){}
+                    }
+                    unzip zipFile: "artifacts\\${BUILD_NUMBER}.zip", dir: 'deploy'
                 }
-                unzip zipFile: "${BUILD_NUMBER}.zip", dir: 'C:\\deploy'
             }
 	    }
     }
