@@ -13,10 +13,8 @@ pipeline {
 	    }
         stage('Archive'){
             steps{
-                dir('C:\\'){
                     zip zipFile: "artifacts\\${BUILD_NUMBER}.zip", archive:false, dir: 'target'
                     archiveArtifacts artifacts: "artifacts\\${BUILD_NUMBER}.zip"
-                }
             }
         }
         stage('Deploy'){
