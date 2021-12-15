@@ -13,12 +13,6 @@ pipeline {
 	    }
         stage('Archive'){
             steps{
-                script{
-                    try
-                    {
-                        bat("md C:\\artifacts\\")
-                    }catch(Exception e){}
-                }
                 zip zipFile: "C:\\artifacts\\${BUILD_NUMBER}.zip", archive:false, dir: 'target'
                 archiveArtifacts artifacts: "C:\\artifacts\\${BUILD_NUMBER}.zip"
             }
