@@ -14,12 +14,6 @@ pipeline {
         stage('Archive'){
             steps{
                 dir('C:\\'){
-                    script{
-                        try
-                        {
-                            bat("md artifacts")
-                        }catch(Exception e){}
-                    }
                     zip zipFile: "artifacts\\${BUILD_NUMBER}.zip", archive:false, dir: 'target'
                     archiveArtifacts artifacts: "artifacts\\${BUILD_NUMBER}.zip"
                 }
