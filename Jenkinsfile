@@ -14,7 +14,7 @@ pipeline {
         stage('Archive'){
             steps{
                 dir('C:\\'){
-                    zip zipFile: "artifacts\\${BUILD_NUMBER}.zip", archive:false, dir: 'target'
+                    zip zipFile: "artifacts\\${BUILD_NUMBER}.zip", archive:false, dir: 'Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\petclinicJob'
                     archiveArtifacts artifacts: "artifacts\\${BUILD_NUMBER}.zip"
                 }
             }
