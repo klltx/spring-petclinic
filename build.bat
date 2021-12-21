@@ -1,1 +1,1 @@
-./mvnw package
+./mvnw spring-javaformat:apply package
